@@ -1,0 +1,129 @@
+[[model]]
+name: Li-2017-IKr-m4
+author: Chon Lok Lei, Dominic Whittaker
+# Initial values
+ikr.o = 0
+ikr.io = 0
+ikr.c1 = 1
+ikr.c2 = 0
+ikr.ic1 = 0
+ikr.ic2 = 0
+ikr.od = 0
+ikr.iod = 0
+ikr.c1d = 0
+ikr.c2d = 0
+ikr.ic1d = 0
+ikr.ic2d = 0
+#ikr.D = 0
+
+#
+# Simulation engine variables
+#
+[engine]
+time = 0 bind time
+pace = 0 bind pace
+
+#
+# Membrane potential
+#
+[membrane]
+V = engine.pace
+    desc: membane potential
+    in [mV]
+
+[nernst]
+EK = (R*T/F) * log(Ko/Ki) in [mV]
+T = 37 + 273.15 in [K]
+R = 8314.472
+F = 96485.3415
+Ko = 5.4
+    label K_o
+Ki = 130
+    label K_i
+#EK = -88.4
+
+[ikr]
+use membrane.V as V
+#T = nernst.T - 273.15 in [C]
+T = 37
+IKr = g * sqrt(nernst.Ko / 5.4 [mM]) * (o) * (V - nernst.EK)
+
+dot(o) = a31*exp(b31*V)*c2*exp((T-20.)*log(q31)/10.) - a41*exp(b41*V)*o*exp((T-20.)*log(q41)/10.) - \
+        a53*exp(b53*V)*o*exp((T-20.)*log(q53)/10.) + a63*exp(b63*V)*io*exp((T-20.)*log(q63)/10.) + koff*od - kon*(D ^ hill)*o
+dot(io) = a3*exp(b3*V)*ic2*exp((T-20.)*log(q3)/10.) - a4*exp(b4*V)*io*exp((T-20.)*log(q4)/10.) + a53*exp(b53*V)*o*exp((T-20.)*log(q53)/10.) \
+        - a63*exp(b63*V)*io*exp((T-20.)*log(q63)/10.) + koff*iod - kon*(D ^ hill)*io
+dot(c1) = a2*exp(b2*V)*c2*exp((T-20.)*log(q2)/10.) - a1*exp(b1*V)*c1*exp((T-20.)*log(q1)/10.) - a51*exp(b51*V)*c1*exp((T-20.)*log(q51)/10.) \
+        + a61*exp(b61*V)*ic1*exp((T-20.)*log(q61)/10.)
+dot(c2) = a1*exp(b1*V)*c1*exp((T-20.)*log(q1)/10.) - a2*exp(b2*V)*c2*exp((T-20.)*log(q2)/10.) - a31*exp(b31*V)*c2*exp((T-20.)*log(q31)/10.) \
+        + a41*exp(b41*V)*o*exp((T-20.)*log(q41)/10.) - a52*exp(b52*V)*c2*exp((T-20.)*log(q52)/10.) + \
+        a62*exp(b62*V)*ic2*exp((T-20.)*log(q62)/10.)
+dot(ic1) = a21*exp(b21*V)*ic2*exp((T-20.)*log(q21)/10.) - a11*exp(b11*V)*ic1*exp((T-20.)*log(q11)/10.) + \
+        a51*exp(b51*V)*c1*exp((T-20.)*log(q51)/10.) - a61*exp(b61*V)*ic1*exp((T-20.)*log(q61)/10.)
+dot(ic2) = a11*exp(b11*V)*ic1*exp((T-20.)*log(q11)/10.) - a21*exp(b21*V)*ic2*exp((T-20.)*log(q21)/10.) - \
+        a3*exp(b3*V)*ic2*exp((T-20.)*log(q3)/10.) + a4*exp(b4*V)*io*exp((T-20.)*log(q4)/10.) + a52*exp(b52*V)*c2*exp((T-20.)*log(q52)/10.) - \
+        a62*exp(b62*V)*ic2*exp((T-20.)*log(q62)/10.)
+dot(od) = kon * (D ^ hill) * o + a63*exp(b63*V)*iod*exp((T-20.)*log(q63)/10.) + a31*exp(b31*V)*c2d*exp((T-20.)*log(q31)/10.) - (koff + a53*exp(b53*V)*exp((T-20.)*log(q53)/10.) + a41*exp(b41*V)*exp((T-20.)*log(q41)/10.)) * od
+dot(iod) = kon * (D ^ hill) * io + a53*exp(b53*V)*od*exp((T-20.)*log(q53)/10.) + a3*exp(b3*V)*ic2d*exp((T-20.)*log(q3)/10.) - (koff + a63*exp(b63*V)*exp((T-20.)*log(q63)/10.) + a4*exp(b4*V)*exp((T-20.)*log(q4)/10.))* iod
+
+dot(c1d) = a2*exp(b2*V)*c2d*exp((T-20.)*log(q2)/10.) - a1*exp(b1*V)*c1d*exp((T-20.)*log(q1)/10.) - a51*exp(b51*V)*c1d*exp((T-20.)*log(q51)/10.) \
+        + a61*exp(b61*V)*ic1d*exp((T-20.)*log(q61)/10.)
+dot(c2d) = a1*exp(b1*V)*c1d*exp((T-20.)*log(q1)/10.) - a2*exp(b2*V)*c2d*exp((T-20.)*log(q2)/10.) - a31*exp(b31*V)*c2d*exp((T-20.)*log(q31)/10.) \
+        + a41*exp(b41*V)*od*exp((T-20.)*log(q41)/10.) - a52*exp(b52*V)*c2d*exp((T-20.)*log(q52)/10.) + \
+        a62*exp(b62*V)*ic2d*exp((T-20.)*log(q62)/10.)
+dot(ic1d) = a21*exp(b21*V)*ic2d*exp((T-20.)*log(q21)/10.) - a11*exp(b11*V)*ic1d*exp((T-20.)*log(q11)/10.) + \
+        a51*exp(b51*V)*c1d*exp((T-20.)*log(q51)/10.) - a61*exp(b61*V)*ic1d*exp((T-20.)*log(q61)/10.)
+dot(ic2d) = a11*exp(b11*V)*ic1d*exp((T-20.)*log(q11)/10.) - a21*exp(b21*V)*ic2d*exp((T-20.)*log(q21)/10.) - \
+        a3*exp(b3*V)*ic2d*exp((T-20.)*log(q3)/10.) + a4*exp(b4*V)*iod*exp((T-20.)*log(q4)/10.) + a52*exp(b52*V)*c2d*exp((T-20.)*log(q52)/10.) - \
+        a62*exp(b62*V)*ic2d*exp((T-20.)*log(q62)/10.)
+
+a1 = 0.0264
+a2 = 4.986E-6
+a3 = 0.001214
+a4 = 1.854E-5
+a11 = 0.0007868
+a21 = 5.455E-6
+a31 = 0.005509
+a41 = 0.001416
+a51 = 0.4492
+a52 = 0.3181
+a53 = 0.149
+a61 = 0.01241
+a62 = 0.3226
+a63 = 0.008978
+b1 = 4.631E-5
+b2 = -0.004226
+b3 = 0.008516
+b4 = -0.04641
+b11 = 1.535E-8
+b21 = -0.1688
+b31 = 7.771E-9
+b41 = -0.02877
+b51 = 0.008595
+b52 = 3.613E-8
+b53 = 0.004668
+b61 = 0.1725
+b62 = -0.0006575
+b63 = -0.02215
+q1 = 4.843
+q2 = 4.23
+q3 = 4.962
+q4 = 3.769
+q11 = 4.942
+q21 = 4.156
+q31 = 4.22
+q41 = 1.459
+q51 = 5
+q52 = 4.663
+q53 = 2.412
+q61 = 5.568
+q62 = 5
+q63 = 5.682
+g = 0.046585
+
+#dot(D) = 0
+D = 0
+    in [nM]
+
+kon = 1e-5
+koff = 1e-5
+hill = 1
