@@ -2,6 +2,7 @@
 
 This repository contains source code and data that reproduce the article "The impact of uncertainty in hERG binding mechanism on _in silico_ predictions of drug-induced proarrhythmic risk" by Chon Lok Lei, Dominic Whittaker and Gary Mirams.
 
+![Model structures used in this repository](/models/model-list.svg)
 
 ### Requirements
 
