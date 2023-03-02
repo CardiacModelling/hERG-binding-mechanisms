@@ -1,6 +1,6 @@
 # Data description
 
-Raw data for FDA Milnes' protocol from Li et al. 2017.
+Raw data for FDA Milnes' protocol from [Li et al. 2017](https://doi.org/10.1161/CIRCEP.116.004628).
 
 - `[drug_name].csv`: Raw data with multiple sweeps, repeats, and concentrations.
 - `save_FDA_csv.sh`: Runs `save_FDA_csv.py` for all compounds to create `../Milnes-data`.
