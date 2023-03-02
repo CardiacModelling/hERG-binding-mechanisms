@@ -17,7 +17,7 @@ $ pip install -r requirements.txt
 
 ### Outline
 
-- [data](data): Contain all the data, including fitting results.
+- [data](data): Contains all the data, including fitting results.
 - [methods](methods): Contains all the Python helper modules, classes and functions.
 - [models](models): Model files, contains all the hERG and AP models.
 - [protocols](protocols): Contains all the voltage clamp protocols.
