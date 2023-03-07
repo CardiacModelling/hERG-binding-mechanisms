@@ -124,7 +124,8 @@ for ax, compounds, classes, qnet in [('A', compounds_t, classes_t, qnet_t),
         for x in x_cmax_:
             q0.append(qnet['li'][compound][x])
         tms0 = np.mean(q0)
-        _, color0 = get_cl(classes[compound])
+        #_, color0 = get_cl(classes[compound])
+        color0 = tms_color(tms0)
         #axes[ax].plot(tms0, i, 'o', c=color0, alpha=0.75)
         axes[ax].scatter(tms0, i, marker='o', color='none', lw=1.5, ec=color0,
                          s=50, alpha=0.75)
@@ -133,14 +134,17 @@ for ax, compounds, classes, qnet in [('A', compounds_t, classes_t, qnet_t),
     axes[ax].set_xlim([xmin, xmax])
 
     # Legend
-    #axes[ax].plot(-np.inf, 1, 's', c='#7f7f7f', alpha=0.75, label='0a')
+    l0, color0 = get_cl(0)
+    axes[ax].plot(-np.inf, 1, 'o', c=color0, alpha=0.75, label=l0)
     axes[ax].scatter(-np.inf, 1, marker='s', color='none', lw=1.5,
                      ec='#7f7f7f', alpha=0.75, label='0a')
+    l0, color0 = get_cl(1)
+    axes[ax].plot(-np.inf, 1, 'o', c=color0, alpha=0.75, label=l0)
     axes[ax].plot(-np.inf, 1, 'x', c='#7f7f7f', alpha=0.75, label='Model')
-    for j in range(3):
-        l0, color0 = get_cl(j)
-        axes[ax].scatter(-np.inf, 1, marker='o', color='none', lw=1.5,
-                         ec=color0, alpha=0.75, label=l0)
+    l0, color0 = get_cl(2)
+    axes[ax].plot(-np.inf, 1, 'o', c=color0, alpha=0.75, label=l0)
+    axes[ax].scatter(-np.inf, 1, marker='o', color='none', lw=1.5,
+                     ec='#7f7f7f', alpha=0.75, label='CiPA v1.0')
 
     # Shade the background
     kwargs = dict(alpha=0.2, ec='none', zorder=-1)
@@ -215,7 +219,7 @@ for i in ['C', 'D', 'E', 'F', 'G', 'H', 'I']:
     axes[i].set_ylabel('Voltage (mV)')
 axes['I'].set_xlabel('Time (ms)', fontsize=11)
 
-axes['A'].legend(loc='lower right', bbox_to_anchor=(1.015, 1), ncol=5,
+axes['A'].legend(loc='lower center', bbox_to_anchor=(0.5, 1), ncol=3,
                  fontsize=8)
 axes['C'].legend(loc='lower center', bbox_to_anchor=(0.5, 1), ncol=2,
                  fontsize=8)
