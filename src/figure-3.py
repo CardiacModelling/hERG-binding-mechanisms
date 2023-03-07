@@ -128,7 +128,8 @@ model_names_tmp += [f'm{i}' for i in range(6, 14)]
 xticks_loc = np.arange(nmodels + 2) + 1
 xticks_val = ['\nBootstrap', '0a', '0b', 1, 2, '2i', 3, 4, 5, '5i', 6, 7, 8, 9,
               10, '\n11', 12, '\n13', '']
-colors = ['#9467bd', '#8c564b', '#d62728']
+#colors = ['#9467bd', '#8c564b', '#d62728']
+colors = ['#66c2a5', '#fc8d62', '#d62728']
 for i_c, compound in enumerate(compounds):
     ax = axes[i_c, 1]
     #ax.set_title(Compounds[i_c], loc='left')
@@ -166,23 +167,25 @@ for i_c, compound in enumerate(compounds):
 
     xs = np.random.normal(1.0, 0.05, len(expt_samples))
 
-    B = ax.boxplot(expt_samples)
+    B = ax.boxplot(expt_samples, sym='x', widths=(.7))
     Q4 = np.max([item.get_ydata()[1] for item in B['whiskers']])
 
     for i in range(len(model_names_tmp)):
         # Li et al.
         boo = 'li-' + model_names_tmp[i] in exclude_2[compound]
         c = '#7f7f7f' if boo else colors[0]
-        ax.scatter(i + 2, RMSEs[1][i], marker='s', color='none',
-                linewidth=1.5, edgecolor=c)
+        a = 0.25 if boo else 0.9
+        ax.scatter(i + 2, RMSEs[1][i], marker='s', color='none', s=40,
+                linewidth=1.5, edgecolor=c, alpha=a)
         # Lei et al.
         boo = model_names_tmp[i] in exclude_1[compound] 
         c = '#7f7f7f' if boo else colors[1]
+        a = 0.25 if boo else 0.9
         ax.scatter(i + 2, RMSEs[0][i], marker='o', color='none',
-                linewidth=1.5, edgecolor=c)
+                linewidth=1.5, edgecolor=c, alpha=a)
 
     ax.scatter(len(model_names_tmp) + 2, FDA_RMSE, marker='*', color='none',
-            linewidth=1.5, edgecolor=colors[-1])
+            alpha=0.9, linewidth=1.5, edgecolor=colors[-1])
 
     ax.axhline(Q4, color='C3', linestyle='dashed')
     #ax.set_ylabel('RMSD')

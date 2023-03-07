@@ -23,8 +23,10 @@ if not os.path.isdir(results):
 compounds = ['verapamil', 'metoprolol']#'diltiazem']
 Compounds = ['Verapamil', 'Metoprolol']#'Diltiazem']
 
-colors = ['#9467bd', '#8c564b', '#d62728']
+#colors = ['#9467bd', '#8c564b', '#d62728']
+colors = ['#66c2a5', '#fc8d62', '#d62728']
 markers = ['s', 'o']
+sizes = [40, 30, 30]
 
 model_list = [f'{i}' for i in ['0b']]
 model_list += [f'{i}' for i in range(1, 3)]
@@ -62,15 +64,16 @@ for i in range(1, len(xticks_value), 2):
 
 fig, axes = plt.subplots(3, 2, figsize=(8.5, 5), sharex=True)
 
-# NOTE: match parameter_names order
-axes[0, 0].set_ylabel(r'$k_\mathrm{on}$ (ms$^{-1}$nM$^{-n}$)', fontsize=11)
-axes[1, 0].set_ylabel(r'$k_\mathrm{off}$ (ms$^{-1}$)', fontsize=11)
-axes[2, 0].set_ylabel(r'$n$', fontsize=11)
-
 for i_c, compound in enumerate(compounds):
     axes[-1, i_c].set_xticks(xticks_loc, xticks_value)
     axes[-1, i_c].set_xlabel(xlabel, fontsize=11)
     axes[0, i_c].set_title(f'{Compounds[i_c]}', loc='left', fontsize=11)
+
+    # NOTE: match parameter_names order
+    axes[0, i_c].set_ylabel(r'$k_\mathrm{on}$ (ms$^{-1}$nM$^{-n}$)',
+                            fontsize=11)
+    axes[1, i_c].set_ylabel(r'$k_\mathrm{off}$ (ms$^{-1}$)', fontsize=11)
+    axes[2, i_c].set_ylabel(r'$n$', fontsize=11)
 
     thetas = [[], [], []]  # Calculate the spread
     for i_b, base_model in enumerate(['li', 'lei']):
@@ -90,16 +93,18 @@ for i_c, compound in enumerate(compounds):
             binding_params = parameters.binding[model_name][compound]
             # >>> Goodness of fits of the model
             marker = markers[i_b]
+            size = sizes[i_b]
             if model_name in exclude_model_list[compound]:
                 alpha = 0.25
                 ec = '#7f7f7f'
             else:
-                alpha = 1
+                alpha = 0.9
                 ec = colors[i_b]
             if model_name == 'li':
-                alpha = 1
+                alpha = 0.9
                 marker = '*'
                 ec = colors[-1]
+                size = sizes[-1]
             # <<<
             for n, v in zip(binding_names, binding_params):
                 # >>> Parameter naming consistency
@@ -140,9 +145,9 @@ for i_c, compound in enumerate(compounds):
                     else:
                         b = True
                     color = ec if solid else 'none'
-                    alpha = alpha * 0.65 if solid else alpha
-                    axes[idx, i_c].scatter(i_m, v, alpha=alpha, marker=marker,
-                            color=color, linewidth=1.5, edgecolor=ec,
+                    a = alpha * 0.65 if solid else alpha
+                    axes[idx, i_c].scatter(i_m, v, alpha=a, marker=marker,
+                            color=color, linewidth=1.5, edgecolor=ec, s=size,
                             label='_' if b else l)
                     # Keep parameters to calculate the spread
                     if model_name not in exclude_model_list[compound]:

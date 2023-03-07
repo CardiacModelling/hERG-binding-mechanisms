@@ -45,7 +45,8 @@ model_list += [f'{i}' for i in range(6, 14)]
 
 #colours = sns.color_palette('Set3', n_colors=len(model_list))
 #colours = sns.husl_palette(n_colors=len(model_list)+2, h=.5, s=.6)
-colours = sns.color_palette(cc.glasbey_category10, n_colors=len(model_list))
+colours = sns.color_palette(cc.glasbey_category10, n_colors=len(model_list)+2)
+colours = colours[:-5] + colours[-3:]
 #colours = sns.color_palette(cc.glasbey_hv, n_colors=len(model_list))
 
 for base_model in ['li', 'lei']:
@@ -114,10 +115,10 @@ for base_model in ['li', 'lei']:
                 for x in x_cmax_:
                     q.append(qnet[model_name][compound][x])
                 if model_name in exclude_model_list[compound]:
-                    ax.plot(x_cmax_, q, 'o:', alpha=0.2, c=colours[i_m],
+                    ax.plot(x_cmax_, q, 'o:', alpha=0.25, c=colours[i_m],
                             label=model_list[i_m])
                 else:
-                    ax.plot(x_cmax_, q, 'o-', alpha=0.5, c=colours[i_m],
+                    ax.plot(x_cmax_, q, 'o-', alpha=0.65, c=colours[i_m],
                             label=model_list[i_m])
 
             if base_model == 'li':
@@ -125,7 +126,7 @@ for base_model in ['li', 'lei']:
                 for x in x_cmax_:
                     q0.append(qnet['li'][compound][x])
 
-                ax.plot(x_cmax_, q0, 'o--', c='k', alpha=0.75, lw=1.5,
+                ax.plot(x_cmax_, q0, 'o--', c='k', alpha=0.85, lw=1.5,
                         label='CiPA v1.0')
 
     # Shade the background according to the tms decision boundaries
