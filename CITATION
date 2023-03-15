@@ -1,3 +1,23 @@
 To cite this repository or the article in publications, please use:
 
-_TBU_
+Chon Lok Lei, Dominic G. Whittaker and Gary R Mirams.
+(2023).
+The impact of uncertainty in hERG binding mechanism on in silico predictions of drug-induced proarrhythmic risk.
+bioRxiv 2023.03.14.532553.
+doi:10.1101/2023.03.14.532553
+
+https://doi.org/10.1101/2023.03.14.532553
+
+A BibTeX entry for LaTeX users is
+
+@article {Lei2023BindingMechanism,
+	author = {Lei, Chon Lok and Whittaker, Dominic G and Mirams, Gary R},
+	title = {The impact of uncertainty in {hERG} binding mechanism on in silico predictions of drug-induced proarrhythmic risk},
+	elocation-id = {2023.03.14.532553},
+	year = {2023},
+	doi = {10.1101/2023.03.14.532553},
+	publisher = {Cold Spring Harbor Laboratory},
+	URL = {https://www.biorxiv.org/content/early/2023/03/15/2023.03.14.532553},
+	eprint = {https://www.biorxiv.org/content/early/2023/03/15/2023.03.14.532553.full.pdf},
+	journal = {bioRxiv}
+}
