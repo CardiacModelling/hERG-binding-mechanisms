@@ -30,5 +30,7 @@ $ pip install -r requirements.txt
 If you publish any work based on the contents of this repository please cite ([CITATION file](CITATION)):
 
 Chon Lok Lei, Dominic G. Whittaker and Gary R Mirams.
+(2023).
 The impact of uncertainty in hERG binding mechanism on _in silico_ predictions of drug-induced proarrhythmic risk.
-
+_bioRxiv_ 2023.03.14.532553.
+[doi:10.1101/2023.03.14.532553](https://doi.org/10.1101/2023.03.14.532553)
