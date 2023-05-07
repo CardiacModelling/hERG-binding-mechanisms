@@ -16,8 +16,13 @@ cmap = sns.color_palette('dark:#66c2a4_r', as_cmap=True)
 import methods.parameters as parameters
 import methods.heatmap as heatmap
 
+only_bootstrap = '--only_bootstrap' in sys.argv
+
 results = 'figures'
-prefix = 'figure-4'
+if only_bootstrap:
+    prefix = 'figure-4-only_bootstrap'
+else:
+    prefix = 'figure-4'
 
 results = os.path.join(results, 'figure-4')
 if not os.path.isdir(results):
@@ -41,7 +46,11 @@ for base_model in ['li', 'lei']:
         model_names = [f'm{m}' for m in model_list]
     else:
         model_names = [f'{base_model}-m{m}' for m in model_list]
-    exclude_model_list = parameters.exclude_model_list[base_model]
+        
+    if only_bootstrap:
+        exclude_model_list = parameters.exclude_model_list_only_bootstrap[base_model]
+    else:
+        exclude_model_list = parameters.exclude_model_list[base_model]
 
     fig, ax = plt.subplots(1, 1, figsize=(8.5, 9.5))
 

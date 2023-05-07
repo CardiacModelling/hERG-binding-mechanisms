@@ -909,6 +909,75 @@ exclude_model_list = {
 for k in exclude_model_list:
     assert(len(exclude_model_list[k]) == len(_drug_list))
 
+
+# Results from running
+# $ python RMSE-Milnes-selection.py --only_bootstrap
+exclude_model_list_only_bootstrap = {
+    'lei': {
+        'astemizole': ['m0a'],
+        'azimilide': ['m0a', 'm1', 'm2', 'm2i', 'm3', 'm4', 'm5', 'm5i', 'm6', 'm8', 'm9', 'm10'],
+        'bepridil': ['m0a', 'm0b', 'm1', 'm2', 'm2i', 'm3', 'm4', 'm5', 'm5i', 'm6', 'm7', 'm8', 'm9', 'm10', 'm11', 'm12', 'm13'],
+        'chlorpromazine': ['m0a', 'm0b', 'm1', 'm2', 'm2i', 'm3', 'm4', 'm5', 'm5i', 'm6', 'm7', 'm8', 'm9', 'm10', 'm11', 'm12', 'm13'],
+        'cisapride': ['m0a', 'm0b', 'm1', 'm2', 'm2i', 'm3', 'm4', 'm5', 'm5i', 'm6', 'm7', 'm8', 'm9', 'm10', 'm11', 'm12', 'm13'],
+        'clarithromycin': ['m0a', 'm0b', 'm1', 'm2', 'm2i', 'm3', 'm4', 'm5', 'm5i', 'm6', 'm7', 'm8', 'm9', 'm10', 'm11', 'm12', 'm13'],
+        'clozapine': ['m0a', 'm0b', 'm1', 'm2', 'm2i', 'm3', 'm4', 'm5', 'm5i', 'm6', 'm7', 'm8', 'm9', 'm10', 'm11', 'm12', 'm13'],
+        'diltiazem': [],
+        'disopyramide': [],
+        'dofetilide': ['m0a'],
+        'domperidone': ['m0a', 'm0b', 'm1', 'm2', 'm2i', 'm3', 'm4', 'm5', 'm5i', 'm6', 'm8', 'm9', 'm10', 'm13'],
+        'droperidol': ['m0a', 'm0b', 'm4', 'm5', 'm5i', 'm9'],
+        'ibutilide': ['m0a', 'm0b', 'm1', 'm2', 'm2i', 'm3', 'm4', 'm5', 'm5i', 'm6', 'm7', 'm8', 'm9', 'm10', 'm11', 'm12', 'm13'],
+        'loratadine': ['m0a', 'm0b', 'm1', 'm2', 'm2i', 'm3', 'm4', 'm5', 'm5i', 'm6', 'm7', 'm8', 'm9', 'm10', 'm11', 'm12', 'm13'],
+        'metoprolol': [],
+        'mexiletine': ['m0a', 'm0b', 'm1', 'm2', 'm2i', 'm3', 'm4', 'm5', 'm5i', 'm6', 'm7', 'm8', 'm9', 'm10', 'm13'],
+        'nifedipine': [],
+        'nitrendipine': ['m0a', 'm0b', 'm1', 'm2', 'm2i', 'm3', 'm4', 'm5', 'm5i', 'm6', 'm7', 'm8', 'm9', 'm10', 'm11', 'm13'],
+        'ondansetron': [],
+        'pimozide': ['m0a', 'm0b', 'm1', 'm2', 'm2i', 'm3', 'm4', 'm5', 'm5i', 'm6', 'm7', 'm8', 'm9', 'm10', 'm11', 'm12', 'm13'],
+        'quinidine': [],
+        'ranolazine': [],
+        'risperidone': ['m0a', 'm0b', 'm1', 'm2', 'm2i', 'm3', 'm4', 'm5', 'm5i', 'm6', 'm7', 'm8', 'm9', 'm10', 'm13'],
+        'sotalol': [],
+        'tamoxifen': ['m0a', 'm0b', 'm1', 'm2', 'm2i', 'm3', 'm4', 'm5', 'm5i', 'm6', 'm7', 'm8', 'm9', 'm10', 'm11', 'm12', 'm13'],
+        'terfenadine': ['m0a', 'm0b', 'm1', 'm2', 'm2i', 'm3', 'm4', 'm5', 'm5i', 'm9'],
+        'vandetanib': [],
+        'verapamil': ['m0a', 'm0b', 'm4', 'm5', 'm5i', 'm9'],
+    },
+    'li': {
+        'astemizole': ['li-m0a'],
+        'azimilide': ['li-m0a', 'li-m1', 'li-m2', 'li-m2i', 'li-m3', 'li-m4', 'li-m5', 'li-m5i', 'li-m6', 'li-m8', 'li-m9', 'li-m10'],
+        'bepridil': ['li-m0a', 'li-m0b', 'li-m1', 'li-m2', 'li-m2i', 'li-m3', 'li-m4', 'li-m5', 'li-m5i', 'li-m6', 'li-m7', 'li-m8', 'li-m9', 'li-m10', 'li-m11', 'li-m12', 'li-m13'],
+        'chlorpromazine': ['li-m0a', 'li-m0b', 'li-m1', 'li-m2', 'li-m2i', 'li-m3', 'li-m4', 'li-m5', 'li-m5i', 'li-m6', 'li-m7', 'li-m8', 'li-m9', 'li-m10', 'li-m11', 'li-m12', 'li-m13'],
+        'cisapride': ['li-m0a', 'li-m0b', 'li-m1', 'li-m2', 'li-m2i', 'li-m3', 'li-m4', 'li-m5', 'li-m5i', 'li-m6', 'li-m7', 'li-m8', 'li-m9', 'li-m10', 'li-m11', 'li-m12', 'li-m13'],
+        'clarithromycin': ['li-m0a', 'li-m0b', 'li-m1', 'li-m2', 'li-m2i', 'li-m3', 'li-m4', 'li-m5', 'li-m5i', 'li-m6', 'li-m7', 'li-m8', 'li-m9', 'li-m10', 'li-m11', 'li-m12', 'li-m13'],
+        'clozapine': ['li-m0a', 'li-m0b', 'li-m1', 'li-m2', 'li-m2i', 'li-m3', 'li-m4', 'li-m5', 'li-m5i', 'li-m6', 'li-m7', 'li-m8', 'li-m9', 'li-m10', 'li-m11', 'li-m12', 'li-m13'],
+        'diltiazem': [],
+        'disopyramide': [],
+        'dofetilide': ['li-m0a'],
+        'domperidone': ['li-m0a', 'li-m0b', 'li-m1', 'li-m2', 'li-m2i', 'li-m3', 'li-m4', 'li-m5', 'li-m5i', 'li-m6', 'li-m8', 'li-m9', 'li-m10'],
+        'droperidol': ['li-m0a', 'li-m0b', 'li-m4', 'li-m5', 'li-m5i', 'li-m9'],
+        'ibutilide': ['li-m0a', 'li-m0b', 'li-m1', 'li-m2', 'li-m2i', 'li-m3', 'li-m4', 'li-m5', 'li-m5i', 'li-m6', 'li-m7', 'li-m8', 'li-m9', 'li-m10', 'li-m11', 'li-m12', 'li-m13'],
+        'loratadine': ['li-m0a', 'li-m0b', 'li-m1', 'li-m2', 'li-m2i', 'li-m3', 'li-m4', 'li-m5', 'li-m5i', 'li-m6', 'li-m7', 'li-m8', 'li-m9', 'li-m10', 'li-m11', 'li-m12', 'li-m13'],
+        'metoprolol': [],
+        'mexiletine': ['li-m0a', 'li-m0b', 'li-m1', 'li-m2', 'li-m2i', 'li-m3', 'li-m4', 'li-m5', 'li-m5i', 'li-m6', 'li-m7', 'li-m8', 'li-m9', 'li-m10', 'li-m13'],
+        'nifedipine': [],
+        'nitrendipine': ['li-m0a', 'li-m0b', 'li-m1', 'li-m2', 'li-m2i', 'li-m3', 'li-m4', 'li-m5', 'li-m5i', 'li-m6', 'li-m7', 'li-m8', 'li-m9', 'li-m10', 'li-m11', 'li-m13'],
+        'ondansetron': [],
+        'pimozide': ['li-m0a', 'li-m0b', 'li-m1', 'li-m2', 'li-m2i', 'li-m3', 'li-m4', 'li-m5', 'li-m5i', 'li-m6', 'li-m7', 'li-m8', 'li-m9', 'li-m10', 'li-m11', 'li-m12', 'li-m13'],
+        'quinidine': [],
+        'ranolazine': [],
+        'risperidone': ['li-m0a', 'li-m0b', 'li-m1', 'li-m2', 'li-m2i', 'li-m3', 'li-m4', 'li-m5', 'li-m5i', 'li-m6', 'li-m7', 'li-m8', 'li-m9', 'li-m10', 'li-m11'],
+        'sotalol': [],
+        'tamoxifen': ['li-m0a', 'li-m0b', 'li-m1', 'li-m2', 'li-m2i', 'li-m3', 'li-m4', 'li-m5', 'li-m5i', 'li-m6', 'li-m7', 'li-m8', 'li-m9', 'li-m10', 'li-m11', 'li-m13'],
+        'terfenadine': ['li-m0a', 'li-m0b', 'li-m1', 'li-m2', 'li-m2i', 'li-m3', 'li-m4', 'li-m5', 'li-m5i', 'li-m9'],
+        'vandetanib': [],
+        'verapamil': ['li-m0a', 'li-m0b', 'li-m4', 'li-m5', 'li-m5i', 'li-m9'],
+    },
+}
+for k in exclude_model_list_only_bootstrap:
+    assert(len(exclude_model_list_only_bootstrap[k]) == len(_drug_list))
+
+
 ''' # Manual selection
 _all_models = ['0a', '0b', 1, 2, '2i', 3, 4, 5, '5i', 6, 7, 8, 9, 10, 11, 12, 13]
 

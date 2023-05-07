@@ -18,8 +18,9 @@ parser = argparse.ArgumentParser(
     description='Select plausible models with experimental data')
 parser.add_argument("--n_samples", type=int, help="Number of Bootstrap samples to use", \
     default=1000)
+parser.add_argument("--only_bootstrap", action='store_true', help="Whether to use only bootstrap samples as the criteria", \
+    default=False)
 args = parser.parse_args()
-
 
 baseline_models_old = ['lei', 'fda']
 base_models = ['lei', 'li']
@@ -56,7 +57,10 @@ for drug in drugs:
                     RMSE = RMSE[0]
                 RMSEs[base_models[a]][m] = RMSE
 
-    FDA_RMSE = np.loadtxt(path2fits + '/FDA/' + drug + '-RMSE.txt')
+    if args.only_bootstrap:
+        FDA_RMSE = -np.inf
+    else:
+        FDA_RMSE = np.loadtxt(path2fits + '/FDA/' + drug + '-RMSE.txt')
     expt_samples = np.loadtxt(path2data + '/' + drug + '-bootstrap-' + str(args.n_samples) + '-samples.txt')
 
     for a, b in enumerate(base_models):
