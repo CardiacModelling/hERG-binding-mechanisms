@@ -17,10 +17,13 @@ import methods.parameters as parameters
 import methods.heatmap as heatmap
 
 only_bootstrap = '--only_bootstrap' in sys.argv
+mark_bootstrap = '--mark_bootstrap' in sys.argv
 
 results = 'figures'
 if only_bootstrap:
     prefix = 'figure-4-only_bootstrap'
+if mark_bootstrap:
+    prefix = 'figure-4-mark_bootstrap'
 else:
     prefix = 'figure-4'
 
@@ -56,6 +59,9 @@ for base_model in ['li', 'lei']:
         
     if only_bootstrap:
         exclude_model_list = parameters.exclude_model_list_only_bootstrap[base_model]
+    elif mark_bootstrap:
+        exclude_model_list = parameters.exclude_model_list[base_model]
+        exclude_model_list_tmp = parameters.exclude_model_list_only_bootstrap[base_model]
     else:
         exclude_model_list = parameters.exclude_model_list[base_model]
 
@@ -67,6 +73,9 @@ for base_model in ['li', 'lei']:
 
     for i, c in enumerate(compounds_1):
         for j, m in enumerate(model_names):
+            if mark_bootstrap:
+                if m in exclude_model_list_tmp[c]:
+                    exclude[i, j] = 0.5
             if m in exclude_model_list[c]:
                 exclude[i, j] = 1
 
@@ -74,14 +83,21 @@ for base_model in ['li', 'lei']:
 
     for i, c in enumerate(compounds_2):
         for j, m in enumerate(model_names):
+            if mark_bootstrap:
+                if m in exclude_model_list_tmp[c]:
+                    exclude[i + shift, j] = 0.5
             if m in exclude_model_list[c]:
                 exclude[i + shift, j] = 1
     # <<<
 
     # >>> Annotate ast
-    mark_ast = mark_asts[base_model]
-    compounds_1_ast = [c if c not in mark_ast else r'$^*$ ' + c for c in compounds_1]
-    compounds_2_ast = [c if c not in mark_ast else r'$^*$ ' + c for c in compounds_2]
+    if not (only_bootstrap or mark_bootstrap):
+        mark_ast = mark_asts[base_model]
+        compounds_1_ast = [c if c not in mark_ast else r'$^*$ ' + c for c in compounds_1]
+        compounds_2_ast = [c if c not in mark_ast else r'$^*$ ' + c for c in compounds_2]
+    else:
+        compounds_1_ast = compounds_1
+        compounds_2_ast = compounds_2
 
     # <<<
 
@@ -145,10 +161,17 @@ for base_model in ['li', 'lei']:
     # >>> Legend
     ax.scatter(np.NaN, np.NaN, marker='s', color=cmap(-np.inf), alpha=0.95,
                label='Plausible')
+    if mark_bootstrap:
+        ax.scatter(np.NaN, np.NaN, marker='s', color=cmap(0.5), alpha=0.95,
+                   label='Potentially plausible')
     ax.scatter(np.NaN, np.NaN, marker='s', color=cmap(np.inf), alpha=0.95,
                label='Implausible')
-    ax.legend(loc='lower left', bbox_to_anchor=(-0.35, 1.045), ncol=2,
-              columnspacing=1.25)
+    if mark_bootstrap:
+        ax.legend(loc='lower left', bbox_to_anchor=(-0.35, 1.035), ncol=2,
+                  columnspacing=-3)
+    else:
+        ax.legend(loc='lower left', bbox_to_anchor=(-0.35, 1.045), ncol=2,
+                  columnspacing=1.25)
     # <<<
 
     fig.tight_layout(rect=(0, 0, 1.1, 1))
