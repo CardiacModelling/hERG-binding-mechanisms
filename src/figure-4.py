@@ -163,12 +163,12 @@ for base_model in ['li', 'lei']:
                label='Plausible')
     if mark_bootstrap:
         ax.scatter(np.NaN, np.NaN, marker='s', color=cmap(0.5), alpha=0.95,
-                   label='Potentially plausible')
+                   label='As plausible as CiPA v1.0')
     ax.scatter(np.NaN, np.NaN, marker='s', color=cmap(np.inf), alpha=0.95,
                label='Implausible')
     if mark_bootstrap:
         ax.legend(loc='lower left', bbox_to_anchor=(-0.35, 1.035), ncol=2,
-                  columnspacing=-3)
+                  columnspacing=-5.5)
     else:
         ax.legend(loc='lower left', bbox_to_anchor=(-0.35, 1.045), ncol=2,
                   columnspacing=1.25)
