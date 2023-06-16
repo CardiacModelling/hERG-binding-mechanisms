@@ -28,6 +28,13 @@ results = os.path.join(results, 'figure-4')
 if not os.path.isdir(results):
     os.makedirs(results)
 
+mark_asts = {
+    'li': ['bepridil', 'cisapride', 'chlorpromazine', 'ibutilide', 'pimozide',
+           'clozapine', 'clarithromycin', 'loratadine'],
+    'lei': ['bepridil', 'cisapride', 'chlorpromazine', 'ibutilide', 'pimozide',
+            'clozapine', 'clarithromycin', 'tamoxifen', 'loratadine'],
+}
+
 compounds_1 = list(parameters._drug_training_list)
 classes_1 = dict(parameters._drug_training_classes)
 compounds_2 = list(parameters._drug_validation_list)
@@ -71,7 +78,14 @@ for base_model in ['li', 'lei']:
                 exclude[i + shift, j] = 1
     # <<<
 
-    heatmap.heatmap(exclude, compounds_1 + [''] + compounds_2, model_list,
+    # >>> Annotate ast
+    mark_ast = mark_asts[base_model]
+    compounds_1_ast = [c if c not in mark_ast else r'$^*$ ' + c for c in compounds_1]
+    compounds_2_ast = [c if c not in mark_ast else r'$^*$ ' + c for c in compounds_2]
+
+    # <<<
+
+    heatmap.heatmap(exclude, compounds_1_ast + [''] + compounds_2_ast, model_list,
                     cmap=cmap, rotation=0, ha='center', cbarlabel=None,
                     alpha=0.95, ax=ax)
     ax.axhline(shift - 1, c='#7f7f7f')
