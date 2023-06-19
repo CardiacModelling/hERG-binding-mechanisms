@@ -75,7 +75,7 @@ for base_model in ['li', 'lei']:
         for j, m in enumerate(model_names):
             if mark_bootstrap:
                 if m in exclude_model_list_tmp[c]:
-                    exclude[i, j] = 0.5
+                    exclude[i, j] = 0.4
             if m in exclude_model_list[c]:
                 exclude[i, j] = 1
 
@@ -85,7 +85,7 @@ for base_model in ['li', 'lei']:
         for j, m in enumerate(model_names):
             if mark_bootstrap:
                 if m in exclude_model_list_tmp[c]:
-                    exclude[i + shift, j] = 0.5
+                    exclude[i + shift, j] = 0.4
             if m in exclude_model_list[c]:
                 exclude[i + shift, j] = 1
     # <<<
@@ -162,7 +162,7 @@ for base_model in ['li', 'lei']:
     ax.scatter(np.NaN, np.NaN, marker='s', color=cmap(-np.inf), alpha=0.95,
                label='Plausible')
     if mark_bootstrap:
-        ax.scatter(np.NaN, np.NaN, marker='s', color=cmap(0.5), alpha=0.95,
+        ax.scatter(np.NaN, np.NaN, marker='s', color=cmap(0.4), alpha=0.95,
                    label='As plausible as CiPA v1.0')
     ax.scatter(np.NaN, np.NaN, marker='s', color=cmap(np.inf), alpha=0.95,
                label='Implausible')
