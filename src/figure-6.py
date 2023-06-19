@@ -136,9 +136,9 @@ for base_model in ['li', 'lei']:
         for jj, compound in enumerate(compounds):
             ax = axes[ii, jj]
             kwargs = dict(ec='none', zorder=-1)
-            ax.axhspan(ymin, tms_u, alpha=0.15, color='C3', **kwargs)
-            ax.axhspan(tms_u, tms_l, alpha=0.25, color='C0', **kwargs)
-            ax.axhspan(tms_l, ymax, alpha=0.15, color='C2', **kwargs)
+            ax.axhspan(ymin, tms_u, alpha=0.125, color='#fc8d62', **kwargs)
+            ax.axhspan(tms_u, tms_l, alpha=0.125, color='#8da0cb', **kwargs)
+            ax.axhspan(tms_l, ymax, alpha=0.125, color='#66c2a5', **kwargs)
             kwargs = dict(ls='--', lw=1.5, alpha=0.5, zorder=0)
             ax.axhline(tms_u, color='#7f7f7f', **kwargs)
             ax.axhline(tms_l, color='#7f7f7f', **kwargs)

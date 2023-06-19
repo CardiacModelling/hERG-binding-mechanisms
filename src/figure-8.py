@@ -96,22 +96,22 @@ for model_name in model_names:
 
 def tms_color(x):
     if x < tms_u:
-        return 'C3'
+        return '#d95f02'
     elif x >= tms_u and x < tms_l:
-        return 'C0'
+        return '#7570b3'
     else:
-        return 'C2'
+        return '#1b9e77'
 
 def get_cl(c):
     if c == 0:
         l0 = 'Low'
-        color0 = 'C2'
+        color0 = '#1b9e77'
     elif c == 1:
         l0 = 'Intermediate'
-        color0 = 'C0'
+        color0 = '#7570b3'
     elif c == 2:
         l0 = 'High'
-        color0 = 'C3'
+        color0 = '#d95f02'
     return l0, color0
 
 # Plot
@@ -173,15 +173,15 @@ print('Plotting...')
 # 1.
 ax = axes[ax_a[0]]
 ax2 = ax.twinx()
-ax.plot(t, d0[_model_voltage[ap_model_name]], c='C0', ls='--',
+ax.plot(t, d0[_model_voltage[ap_model_name]], c='#7570b3', ls='--',
         label='hERG physiological model A')
-ax.plot(t, d1[_model_voltage[ap_model_name]], c='C0', ls='-',
+ax.plot(t, d1[_model_voltage[ap_model_name]], c='#7570b3', ls='-',
         label='hERG physiological model B')
 ax.set_ylabel('Voltage (mV)', fontsize=11)
-ax2.plot(t, d0[o0[0]], c='C1', ls='--')
-ax2.plot(t, d1[o1[0]], c='C1', ls='-')
-ax2.set_ylabel(r'$I_\mathrm{Kr}$ (A/F)', color='C1', fontsize=11)
-ax2.tick_params(axis='y', color='C1', labelcolor='C1')
+ax2.plot(t, d0[o0[0]], c='#d95f02', ls='--')
+ax2.plot(t, d1[o1[0]], c='#d95f02', ls='-')
+ax2.set_ylabel(r'$I_\mathrm{Kr}$ (A/F)', color='#d95f02', fontsize=11)
+ax2.tick_params(axis='y', color='#d95f02', labelcolor='#d95f02')
 for ax in ax_a:
     axes[ax].set_xlim([0, 500])
 if '-v' in sys.argv or '--verbose' in sys.argv:
@@ -248,9 +248,9 @@ for ax in ax_b:
     ax = axes[ax]
     ax.set_ylim(ymin, ymax)
     kwargs = dict(ec='none', zorder=-1)
-    ax.axhspan(ymin, tms_u, alpha=0.15, color='C3', **kwargs)
-    ax.axhspan(tms_u, tms_l, alpha=0.25, color='C0', **kwargs)
-    ax.axhspan(tms_l, ymax, alpha=0.15, color='C2', **kwargs)
+    ax.axhspan(ymin, tms_u, alpha=0.085, color='#fc8d62', **kwargs)
+    ax.axhspan(tms_u, tms_l, alpha=0.085, color='#8da0cb', **kwargs)
+    ax.axhspan(tms_l, ymax, alpha=0.085, color='#66c2a5', **kwargs)
     kwargs = dict(ls='--', lw=1.5, alpha=0.5, zorder=0)
     ax.axhline(tms_u, color='#7f7f7f', **kwargs)
     ax.axhline(tms_l, color='#7f7f7f', **kwargs)
@@ -294,14 +294,14 @@ for ax, compounds, classes, qnet in [('A', compounds_t, classes_t, qnet_t),
     axes[ax].plot(-np.inf, 1, 'o', c=color0, alpha=0.75, label=l0)
 
     # Shade the background
-    kwargs = dict(alpha=0.2, ec='none', zorder=-1)
+    kwargs = dict(alpha=0.085, ec='none', zorder=-1)
     cls = list(classes.values())
     n_high = 1 - cls.count(2) / len(cls)
     n_low = cls.count(0) / len(cls)
-    axes[ax].axvspan(xmin, tms_u, ymin=n_high, color='C3', **kwargs)
-    axes[ax].axvspan(tms_u, tms_l, ymin=n_low, ymax=n_high, color='C0',
+    axes[ax].axvspan(xmin, tms_u, ymin=n_high, color='#fc8d62', **kwargs)
+    axes[ax].axvspan(tms_u, tms_l, ymin=n_low, ymax=n_high, color='#8da0cb',
                      **kwargs)
-    axes[ax].axvspan(tms_l, xmax, ymax=n_low, color='C2', **kwargs)
+    axes[ax].axvspan(tms_l, xmax, ymax=n_low, color='#66c2a5', **kwargs)
 
 axes['A'].set_yticks(range(len(compounds_t)), compounds_t[::-1])
 axes['B'].set_yticks(range(len(compounds_v)), compounds_v[::-1])
@@ -339,7 +339,7 @@ sns.despine(fig=fig)
 axes['A'].tick_params(axis='x', color='none')
 #axes['A'].set_xticks([])
 axes['A'].spines['bottom'].set_visible(False)
-ax2.axvline(500.5, lw=3.5, c='C1')
+ax2.axvline(500.5, lw=3.5, c='#d95f02')
 for i in ['A', 'B']:
     axes[i].grid()
 sns.set(rc={'axes.facecolor':'none', 'grid.color':'#CACAD2'})

@@ -79,22 +79,22 @@ for model_name in model_names_with_default:
 
 def tms_color(x):
     if x < tms_u:
-        return 'C3'
+        return '#d95f02'
     elif x >= tms_u and x < tms_l:
-        return 'C0'
+        return '#7570b3'
     else:
-        return 'C2'
+        return '#1b9e77'
 
 def get_cl(c):
     if c == 0:
         l0 = 'Low'
-        color0 = 'C2'
+        color0 = '#1b9e77'
     elif c == 1:
         l0 = 'Intermediate'
-        color0 = 'C0'
+        color0 = '#7570b3'
     elif c == 2:
         l0 = 'High'
-        color0 = 'C3'
+        color0 = '#d95f02'
     return l0, color0
 
 # Plot
@@ -147,14 +147,14 @@ for ax, compounds, classes, qnet in [('A', compounds_t, classes_t, qnet_t),
                      ec='#7f7f7f', alpha=0.75, label='CiPA v1.0')
 
     # Shade the background
-    kwargs = dict(alpha=0.2, ec='none', zorder=-1)
+    kwargs = dict(alpha=0.085, ec='none', zorder=-1)
     cls = list(classes.values())
     n_high = 1 - cls.count(2) / len(cls)
     n_low = cls.count(0) / len(cls)
-    axes[ax].axvspan(xmin, tms_u, ymin=n_high, color='C3', **kwargs)
-    axes[ax].axvspan(tms_u, tms_l, ymin=n_low, ymax=n_high, color='C0',
+    axes[ax].axvspan(xmin, tms_u, ymin=n_high, color='#fc8d62', **kwargs)
+    axes[ax].axvspan(tms_u, tms_l, ymin=n_low, ymax=n_high, color='#8da0cb',
                      **kwargs)
-    axes[ax].axvspan(tms_l, xmax, ymax=n_low, color='C2', **kwargs)
+    axes[ax].axvspan(tms_l, xmax, ymax=n_low, color='#66c2a5', **kwargs)
 
 ax_t = ['C', 'D', 'E']
 ax_v = ['F', 'G', 'H', 'I']
