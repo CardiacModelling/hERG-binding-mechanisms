@@ -140,8 +140,6 @@ for i_c, compound in enumerate(compounds):
                         b, l = False, 'Physiological model A'
                     elif i_m == 2 and base_model == 'lei':  # Not m0a,b
                         b, l = False, 'Physiological model B'
-                    elif model_name == 'li':
-                        b, l = False, 'Li et al.'
                     else:
                         b = True
                     color = ec if solid else 'none'
@@ -164,8 +162,10 @@ for i_c, compound in enumerate(compounds):
     axes[0, i_c].set_yscale('log')
     axes[1, i_c].set_yscale('log')
 
-axes[0, 1].legend(loc='lower right', bbox_to_anchor=(1.015, 1.01), ncol=1,
-                  fontsize=8)
+axes[0, 1].scatter(np.nan, np.nan, alpha=alpha, marker=marker, color='none',
+                   linewidth=1.5, edgecolor=ec, s=size, label='CiPA v1.0')
+axes[0, 1].legend(loc='lower right', bbox_to_anchor=(1.015, 1.01), ncol=2,
+                  fontsize=8, columnspacing=0.85)
 
 # Despine and add grid
 sns.despine(fig=fig)
