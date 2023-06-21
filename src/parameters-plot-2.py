@@ -21,7 +21,8 @@ all_compounds = list(parameters._drug_training_list)
 all_compounds += list(parameters._drug_validation_list)
 #all_compounds = all_compounds[:2]
 
-colors = ['#9467bd', '#8c564b', '#d62728']
+#colors = ['#9467bd', '#8c564b', '#d62728']
+colors = ['#66c2a5', '#fc8d62', '#d62728']
 markers = ['s', 'o']
 
 model_list = [f'{i}' for i in ['0b']]
@@ -53,7 +54,7 @@ else:
 '''
 xticks_loc = np.arange(len(model_list) + 1)
 xticks_value = model_list + ['CiPA v1'] #+ ['Li et al.']
-xticks_value[0] = '0a/b'
+xticks_value[0] = r'0$\alpha/\beta$'
 #for i in [1, 4, 8, -4, -2]:
 for i in range(1, len(xticks_value), 2):
     xticks_value[i] = '\n' + xticks_value[i]

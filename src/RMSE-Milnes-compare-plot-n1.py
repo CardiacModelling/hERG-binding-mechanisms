@@ -37,7 +37,7 @@ args = parser.parse_args()
 
 baseline_models = ['lei', 'fda']
 
-xticks_val = ['0a', '0b', 1, 2, '2i', 3, 4, 5, '5i', 6, 7, 8, 9, 10, 11, 12, 13, '']
+xticks_val = [r'0$\alpha$', r'0$\beta$', 1, 2, '2i', 3, 4, 5, '5i', 6, 7, 8, 9, 10, 11, 12, 13, '']
 nmodels = len(xticks_val) - 1
 RMSEs = np.zeros((len(baseline_models), nmodels))
 models = np.linspace(1, nmodels + 1, nmodels + 1, dtype=int)

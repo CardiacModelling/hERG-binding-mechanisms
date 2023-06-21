@@ -43,6 +43,10 @@ model_list += [f'{i}' for i in range(3, 6)]
 model_list += [f'{i}' for i in ['5i']]
 model_list += [f'{i}' for i in range(6, 14)]
 
+_model_list = model_list.copy()
+_model_list[0] = r'0$\alpha$'
+_model_list[1] = r'0$\beta$'
+
 #colours = sns.color_palette('Set3', n_colors=len(model_list))
 #colours = sns.husl_palette(n_colors=len(model_list)+2, h=.5, s=.6)
 colours = sns.color_palette(cc.glasbey_category10, n_colors=len(model_list)+2)
@@ -116,10 +120,10 @@ for base_model in ['li', 'lei']:
                     q.append(qnet[model_name][compound][x])
                 if model_name in exclude_model_list[compound]:
                     ax.plot(x_cmax_, q, 'o:', alpha=0.25, c=colours[i_m],
-                            label=model_list[i_m])
+                            label=_model_list[i_m])
                 else:
                     ax.plot(x_cmax_, q, 'o-', alpha=0.65, c=colours[i_m],
-                            label=model_list[i_m])
+                            label=_model_list[i_m])
 
             if base_model == 'li':
                 q0 = []

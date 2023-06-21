@@ -126,7 +126,7 @@ model_names_tmp += [f'm{i}' for i in range(3, 6)]
 model_names_tmp += [f'm{i}' for i in ['5i']]
 model_names_tmp += [f'm{i}' for i in range(6, 14)]
 xticks_loc = np.arange(nmodels + 2) + 1
-xticks_val = ['\nBootstrap', '0a', '0b', 1, 2, '2i', 3, 4, 5, '5i', 6, 7, 8, 9,
+xticks_val = ['\nBootstrap', r'0$\alpha$', r'0$\beta$', 1, 2, '2i', 3, 4, 5, '5i', 6, 7, 8, 9,
               10, '\n11', 12, '\n13', '']
 #colors = ['#9467bd', '#8c564b', '#d62728']
 colors = ['#66c2a5', '#fc8d62', '#d62728']

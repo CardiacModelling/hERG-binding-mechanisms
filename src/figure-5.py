@@ -57,7 +57,7 @@ else:
 '''
 xticks_loc = np.arange(len(model_list) + 1)
 xticks_value = model_list + ['CiPA v1'] #+ ['Li et al.']
-xticks_value[0] = '0a/b'
+xticks_value[0] = r'0$\alpha/\beta$'
 #for i in [1, 4, 8, -4, -2]:
 for i in range(1, len(xticks_value), 2):
     xticks_value[i] = '\n' + xticks_value[i]

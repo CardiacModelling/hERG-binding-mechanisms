@@ -22,7 +22,7 @@ mark_bootstrap = '--mark_bootstrap' in sys.argv
 results = 'figures'
 if only_bootstrap:
     prefix = 'figure-4-only_bootstrap'
-if mark_bootstrap:
+elif mark_bootstrap:
     prefix = 'figure-4-mark_bootstrap'
 else:
     prefix = 'figure-4'
@@ -50,6 +50,10 @@ model_list += [f'{i}' for i in ['2i']]
 model_list += [f'{i}' for i in range(3, 6)]
 model_list += [f'{i}' for i in ['5i']]
 model_list += [f'{i}' for i in range(6, 14)]
+
+_model_list = model_list.copy()
+_model_list[0] = r'0$\alpha$'
+_model_list[1] = r'0$\beta$'
 
 for base_model in ['li', 'lei']:
     if base_model == 'lei':
@@ -101,7 +105,7 @@ for base_model in ['li', 'lei']:
 
     # <<<
 
-    heatmap.heatmap(exclude, compounds_1_ast + [''] + compounds_2_ast, model_list,
+    heatmap.heatmap(exclude, compounds_1_ast + [''] + compounds_2_ast, _model_list,
                     cmap=cmap, rotation=0, ha='center', cbarlabel=None,
                     alpha=0.95, ax=ax)
     ax.axhline(shift - 1, c='#7f7f7f')

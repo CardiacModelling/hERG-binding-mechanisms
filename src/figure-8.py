@@ -45,6 +45,10 @@ model_list += [f'{i}' for i in range(3, 6)]
 model_list += [f'{i}' for i in ['5i']]
 model_list += [f'{i}' for i in range(6, 14)]
 
+_model_list = model_list.copy()
+_model_list[0] = r'0$\alpha$'
+_model_list[1] = r'0$\beta$'
+
 base_model = 'lei'
 if base_model == 'lei':
     model_names = [f'm{m}' for m in model_list]
@@ -230,10 +234,10 @@ for ax, compound, Compound in zip(ax_b,
             q.append(qnet_s[model_name][compound][x])
         if model_name in exclude_model_list[compound]:
             ax.plot(x_cmax_, q, 'o:', alpha=0.2, c=colours[i_m],
-                    label=model_list[i_m])
+                    label=_model_list[i_m])
         else:
             ax.plot(x_cmax_, q, 'o-', alpha=0.5, c=colours[i_m],
-                    label=model_list[i_m])
+                    label=_model_list[i_m])
 # Shade the background according to the tms decision boundaries
 ymin, ymax = np.inf, -np.inf
 for ax in ax_b:

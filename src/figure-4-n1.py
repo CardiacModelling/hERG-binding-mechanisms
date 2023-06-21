@@ -62,6 +62,10 @@ for base_model in ['li']: #['li', 'lei']: #TODO only because they're the same
                 exclude[i + shift, j] = 1
     # <<<
 
+    _model_list = model_list.copy()
+    _model_list[0] = r'0$\alpha$'
+    _model_list[1] = r'0$\beta$'
+
     heatmap.heatmap(exclude, compounds_1 + [''] + compounds_2, model_list,
                     cmap=cmap, rotation=0, ha='center', cbarlabel=None,
                     alpha=0.95, ax=ax)
