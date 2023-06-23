@@ -7,6 +7,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set_theme()
+sns.set_context('paper')
+sns.set_style('ticks')
 
 import methods.models as models
 import methods.parameters as parameters
@@ -152,8 +154,8 @@ for compound in compounds:
     for i in range(10):
         xticks.append((i + 0.5) * t0[-1])
         if i % 2:
-            plt.axvspan(i * t0[-1], (i + 1) * t0[-1], color='#7f7f7f',
-                        linestyle='', alpha=0.25)
+            plt.axvspan(i * t0[-1], (i + 1) * t0[-1], color='#CACAD2',
+                        linestyle='', alpha=0.2)
     plt.xticks(xticks, np.arange(1, 11))
 
     plt.ylim([0, 1.1])

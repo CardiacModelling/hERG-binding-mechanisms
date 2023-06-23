@@ -259,7 +259,7 @@ for i_c, compound in enumerate(compounds):
         xticks.append((i + 0.5) * t0[-1])
         if i % 2:
             ax.axvspan(i * t0[-1], (i + 1) * t0[-1], color='#CACAD2',
-                        linestyle='', alpha=0.5)
+                        linestyle='', alpha=0.2)
 
     ax.set_ylim([0, 1.1])
     ax.set_xlim([0, t0[-1] * 10])
