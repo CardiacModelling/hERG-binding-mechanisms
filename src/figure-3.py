@@ -167,7 +167,7 @@ for i_c, compound in enumerate(compounds):
 
     xs = np.random.normal(1.0, 0.05, len(expt_samples))
 
-    B = ax.boxplot(expt_samples, sym='x', widths=(.7))
+    B = ax.boxplot(expt_samples, sym='', whis=10, widths=(.7))
     Q4 = np.max([item.get_ydata()[1] for item in B['whiskers']])
 
     for i in range(len(model_names_tmp)):

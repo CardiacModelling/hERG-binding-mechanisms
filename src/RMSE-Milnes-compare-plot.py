@@ -87,10 +87,7 @@ for drug in plot_drugs:
 
     fig, (a0, a1) = plt.subplots(1, 2, gridspec_kw={'width_ratios': [1, 4]}, figsize=(8.5, 4), sharey=True)
     plt.title(drug)
-    if not show_all_samples:
-        B = a0.boxplot(expt_samples)
-    else:
-        B = a0.boxplot(expt_samples, showfliers=False)
+    B = a0.boxplot(expt_samples, sym='', whis=10)
     Q0 = np.min([item.get_ydata()[1] for item in B['whiskers']])
     Q4 = np.max([item.get_ydata()[1] for item in B['whiskers']])
     if show_all_samples:
